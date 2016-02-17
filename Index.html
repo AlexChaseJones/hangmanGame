@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Hangman!
+    </title>
+</head>
+<body>
+    <script type="text/javascript">
+        var words = ["banana", "apple", "orange"];
+        
+        var pastguesses = [];
+        var currentguess = prompt("Guess a letter!");
+        
+        var randomWord = Math.floor(Math.random() * words.length);
+
+        var currentWord = (words[randomWord]).split("");
+
+        console.log(currentWord);
+
+    </script>
+</body>
+</html>
