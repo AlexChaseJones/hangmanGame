@@ -11,28 +11,41 @@
         var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
         
+
         function newGame(){
-            var newgame = confirm("ready to start a game?");
+            var newgame = confirm("ready to start a game?");        //Checks if the user is ready to start the game.
 
             if (newgame) {
                 var randomWord = Math.floor(Math.random() * words.length);               
-                var currentWord = (words[randomWord]).split("");
-                var currentWordSpaces = currentWord.length;
+                var currentWord = (words[randomWord]).split("");    //Generates a random word and splits it into an array.
+                var currentWordSpaces = currentWord.length;         //Stores the number of spaces into a seperate variable.
 
-                var currentGuess = prompt("Guess a letter!");
+                var currentGuess = prompt("Guess a letter!");       //Prompts the user to guess a letter.
 
-                for (var i = 0; i < alphabet.length; i++) {
-                    var letter = alphabet[i]
+                for (var i = 0; i < alphabet.length; i++) {         //This checks to make sure the user guessed a letter.
+                    var letter = alphabet[i];
 
                      if (letter == currentGuess) {
-                        console.log("good job you guessed an actual letter!")
-                     }
+                        checkGuess(currentGuess, currentWord);                   //If the user guesses a letter, run the checkGuess function.
+                    } else {
+                        
+                    }
+                 
                  } 
 
+                
+
+
                 } else {
-                    
+                    document.write("Maybe next time.")                 //This will most likely be deleted at some point
                 }
         };
+
+        function checkGuess(guess, word){
+            console.log(guess);
+            console.log(word);
+            console.log(word[2]);
+        }
 
         newGame();
 
