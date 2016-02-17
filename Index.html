@@ -8,15 +8,33 @@
 <body>
     <script type="text/javascript">
         var words = ["banana", "apple", "orange"];
-        
-        var pastguesses = [];
-        var currentguess = prompt("Guess a letter!");
-        
-        var randomWord = Math.floor(Math.random() * words.length);
+        var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
-        var currentWord = (words[randomWord]).split("");
+        
+        function newGame(){
+            var newgame = confirm("ready to start a game?");
 
-        console.log(currentWord);
+            if (newgame) {
+                var randomWord = Math.floor(Math.random() * words.length);               
+                var currentWord = (words[randomWord]).split("");
+                var currentWordSpaces = currentWord.length;
+
+                var currentGuess = prompt("Guess a letter!");
+
+                for (var i = 0; i < alphabet.length; i++) {
+                    var letter = alphabet[i]
+
+                     if (letter == currentGuess) {
+                        console.log("good job you guessed an actual letter!")
+                     }
+                 } 
+
+                } else {
+                    
+                }
+        };
+
+        newGame();
 
     </script>
 </body>
