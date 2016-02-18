@@ -7,10 +7,38 @@
 </head>
 <body>
     <script type="text/javascript">
-        var words = ["banana", "apple", "orange"];
-        var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+        function inArray(value,array) {                      //This function checks if a value is in an array, returns true or false
+              for(var i=0;i<array.length;i++) {
+                if(array[i]===value){
+                    return true;
+                }
+            }
+            return false;
+        }
+        function guess(word){
+            var currentGuess = prompt("Guess a letter!");       //Prompts the user to guess a letter.
 
+            if (inArray(currentGuess,alphabet)) {
+                checkWord(currentGuess, word);
+            } else {
+            document.write("Please pick a letter!");
+            guess();
+            }
+        }
         
+        function previous(guess, word) {
+
+        }
+
+        function checkWord(guess, word){
+            word.forEach(function(value,index) {
+                if (value == guess) {
+                    wordHolder[index] = guess;
+                }
+            })
+            document.write(wordHolder);
+            guess()
+        };
 
         function newGame(){
             var newgame = confirm("ready to start a game?");        //Checks if the user is ready to start the game.
@@ -18,34 +46,20 @@
             if (newgame) {
                 var randomWord = Math.floor(Math.random() * words.length);               
                 var currentWord = (words[randomWord]).split("");    //Generates a random word and splits it into an array.
-                var currentWordSpaces = currentWord.length;         //Stores the number of spaces into a seperate variable.
-
-                var currentGuess = prompt("Guess a letter!");       //Prompts the user to guess a letter.
-
-                for (var i = 0; i < alphabet.length; i++) {         //This checks to make sure the user guessed a letter.
-                    var letter = alphabet[i];
-
-                     if (letter == currentGuess) {
-                        checkGuess(currentGuess, currentWord);                   //If the user guesses a letter, run the checkGuess function.
-                    } else {
-                        
-                    }
-                 
-                 } 
-
                 
+                for (var i = 0; i < currentWord.length; i++) {      //Writes blank spaces to the document.
+                    wordHolder.push("_ ");
+                    };
+                document.write(wordHolder);
 
+                guess(currentWord);
+            };  
 
-                } else {
-                    document.write("Maybe next time.")                 //This will most likely be deleted at some point
-                }
-        };
+        }; 
 
-        function checkGuess(guess, word){
-            console.log(guess);
-            console.log(word);
-            console.log(word[2]);
-        }
+        var words = ["banana", "apple", "orange"];
+        var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+        var wordHolder = [];
 
         newGame();
 
