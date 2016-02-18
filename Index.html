@@ -15,6 +15,8 @@
                 var randomWord = Math.floor(Math.random() * words.length);               
                 var currentWord = (words[randomWord]).split("");    //Generates a random word and splits it into an array.
                 
+                chanceDeteriminative(currentWord);
+
                 for (var i = 0; i < currentWord.length; i++) {      //Stores spaces that correspond to the hangman word in a variable called wordHolder.
                     wordHolder.push("_ ");
                 };
@@ -77,7 +79,6 @@
                 wins++;
                 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
                 wordHolder = [];
-                chancesLeft = 13;
 
                 newGame();
             }
@@ -89,15 +90,30 @@
                 loses++;
                 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
                 wordHolder = [];
-                chancesLeft = 13;
 
                 newGame();
             }
         };
 
+        function chanceDeteriminative(word){                //Sets the number of chances based on length of hangman word.
+            var val = word.length;
+            switch (true) {
+                case (val <= 4):
+                    chancesLeft = 12;
+                    break;
+                case (val <= 7):
+                    chancesLeft = 8;
+                    break;
+                case (val <= 12):
+                    chancesLeft = 6;
+                    break;
+                case (val > 12):
+                    chancesLeft = 5;
+                    break;        
+            }
+        };
 
-
-        var words = ["banana", "apple", "orange"];
+        var words = ["toy story", "a bugs life", "monsters inc", "finding nemo", "the incredibles", "cars", "ratatouille", "walle", "up", "brave", "inside out", "pinocchio", "fantasia", "dumbo", "bambi", "cinderella", "alice in wonderland", "peter pan", "sleeping beauty", "robin hood", "the little mermaid", "alladin", "the lion king"];
         var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
         var wordHolder = [];
         var chancesLeft = 13;
@@ -105,6 +121,7 @@
         var loses = 0
 
         newGame();
+
 
     </script>
 </body>
