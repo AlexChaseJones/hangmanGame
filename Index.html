@@ -18,11 +18,15 @@
                 chanceDeteriminative(currentWord);
 
                 for (var i = 0; i < currentWord.length; i++) {      //Stores spaces that correspond to the hangman word in a variable called wordHolder.
-                    wordHolder.push("_ ");
+                    wordHolder.push("_");
                 };
 
-                var index = currentWord.indexOf(" ");               //Replaces spaces between words with a space.
-                wordHolder[index] = " ";
+                currentWord.forEach(function(value,index){          //Replaces spaces between words with a space.
+                    if (value == " ") {
+                        wordHolder[index] = " ";
+                    }
+                });                                             
+                
 
                 document.write(wordHolder);
 
@@ -74,12 +78,13 @@
         };
 
         function checkWin(){                                //Checks to see if the game is over and user guessed all the correct letters, resets and updates global variables. Restarts game.
-            if (wordHolder.indexOf("_ ") == -1) {
+            if (wordHolder.indexOf("_") == -1) {
                 alert("Good Job! You win!")
                 wins++;
                 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
                 wordHolder = [];
-
+                document.write("wins: " + wins);
+                document.write("loses: " + loses);
                 newGame();
             }
         };
@@ -90,7 +95,8 @@
                 loses++;
                 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
                 wordHolder = [];
-
+                document.write("wins: " + wins);
+                document.write("  loses: " + loses);
                 newGame();
             }
         };
@@ -116,7 +122,7 @@
         var words = ["toy story", "a bugs life", "monsters inc", "finding nemo", "the incredibles", "cars", "ratatouille", "walle", "up", "brave", "inside out", "pinocchio", "fantasia", "dumbo", "bambi", "cinderella", "alice in wonderland", "peter pan", "sleeping beauty", "robin hood", "the little mermaid", "alladin", "the lion king"];
         var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
         var wordHolder = [];
-        var chancesLeft = 13;
+        var chancesLeft = undefined;
         var wins= 0;
         var loses = 0
 
