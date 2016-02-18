@@ -102,20 +102,20 @@
                 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
                 wordHolder = [];
                 document.write("wins: " + wins);
-                document.write("  loses: " + loses);
+                document.write("  loses: " + loses + "  ");
                 newGame();
             }
         };
 
     //Positive outcome function.
-        function checkWin(){                                //Checks to see if the game is over and user guessed all the correct letters, resets and updates global variables. Restarts game.
+        function checkWin(){                                //Checks to see if the user guessed all the correct letters, resets and updates global variables. Restarts game.
             if (wordHolder.indexOf("_") == -1) {
                 alert("Good Job! You win!")
                 wins++;
                 alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
                 wordHolder = [];
                 document.write("wins: " + wins);
-                document.write("loses: " + loses);
+                document.write("  loses: " + loses + "  ");
                 newGame();
             }
         };
