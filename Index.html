@@ -35,8 +35,7 @@
 
                 checkWord(currentGuess, word);
             } else {
-            document.write("Please pick a letter!");
-            userGuess(word);
+                userGuess(word);
             }
         };        
 
@@ -53,7 +52,7 @@
         function checkWord(guess, word){                    //This function checks if the guessed letter is in the active hangman word.
             word.forEach(function(value,index) {
                 if (value == guess) {
-                    wordHolder[index] = guess;              //This replaces the corresponding space in wordHolder with the correctly guessed letter.
+                    wordHolder[index] = guess;             //This replaces the corresponding space in wordHolder with the correctly guessed letter.
                 }
             })
 
@@ -64,11 +63,23 @@
                 }
 
             document.write(wordHolder);
-
+            checkWin();
             userGuess(word);
         };
 
-        function gameOver() {
+        function checkWin(){                                //Checks to see if the game is over and user guessed all the correct letters, resets and updates global variables. Restarts game.
+            if (wordHolder.indexOf("_ ") == -1) {
+                alert("Good Job! You win!")
+                wins++;
+                alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+                wordHolder = [];
+                chancesLeft = 13;
+
+                newGame();
+            }
+        };
+
+        function gameOver() {                               //Checks to see if the game is over, resets and updates global variables. Restarts game.
             if (chancesLeft <= 0) {
                 alert("Game Over! You suck.")
                 loses++;
