@@ -14,21 +14,26 @@
                 }
             }
             return false;
-        }
-        function guess(word){
+        };
+
+        function userGuess(word){
             var currentGuess = prompt("Guess a letter!");       //Prompts the user to guess a letter.
 
-            if (inArray(currentGuess,alphabet)) {
+            if (inArray(currentGuess,alphabet)) {               //Makes sure the input was a letter in the alphabet.
+                
+                var index = alphabet.indexOf(currentGuess);     
+                alphabet.splice(index, 1);                      //Removes guessed letter from the alphabet array for comparative measures.
+
                 checkWord(currentGuess, word);
             } else {
             document.write("Please pick a letter!");
-            guess();
+            userGuess(word);
             }
-        }
+        };
         
         function previous(guess, word) {
 
-        }
+        };
 
         function checkWord(guess, word){
             word.forEach(function(value,index) {
@@ -37,7 +42,8 @@
                 }
             })
             document.write(wordHolder);
-            guess()
+
+            userGuess(word);
         };
 
         function newGame(){
@@ -52,8 +58,8 @@
                     };
                 document.write(wordHolder);
 
-                guess(currentWord);
-            };  
+                userGuess(currentWord);
+            }  
 
         }; 
 
