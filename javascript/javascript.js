@@ -46,13 +46,13 @@ function resetForm() {                                          //Resets the inp
             var val = word.length;
             switch (true) {
                 case (val <= 4):
-                    chancesLeft = 3 * level;
+                    chancesLeft = (Math.floor(3 * level)) + 1;
                     break;
                 case (val <= 7):
-                    chancesLeft = 2 * level;
+                    chancesLeft = (Math.floor(2.5 * level)) + 1;
                     break;
                 case (val >= 7):
-                    chancesLeft = 2 * level;
+                    chancesLeft = (Math.floor(2 * level)) + 1;
                     break;        
             }
         };
