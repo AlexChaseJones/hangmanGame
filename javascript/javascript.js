@@ -7,68 +7,42 @@
         var chancesLeft = undefined;
         var wins= 0;
         var loses = 0;
-        // document.onkeyup = function(event) {
-        //     var letter = String.fromCharCode(event.keyCode).toLowerCase();
-        // }
 
 
-
-
-function newGuess() {                                           //Gets the user input from the form element.
-    x = document.getElementById("fname").value;
-    userGuess(x);
-
-}
-
-function resetForm() {                                          //Resets the form on keydown.
+function resetForm() {                                          //Resets the input form on keydown.
      document.getElementById("fname").value = "";
-}
-
-function makeString(arr) {                                      //Turns array into a string then removes all the commas.
-    return (arr.toString()).replace(/,/g, "");
-        
 }
 
 //initializing function.
         function newGame(){  
             
-            pastGuesses = [];                                       //This and the following 3 lines reset the game parameters.
+            pastGuesses = [];                                   //This and the following 3 lines reset the game parameters so that a new game works correctly.
             alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
             wordHolder = [];
-            document.getElementById("guessed").innerHTML = " "
+            document.getElementById("guessed").innerHTML = " ";
 
 
             var randomWord = Math.floor(Math.random() * words.length);               
-            currentWord = (words[randomWord]).split("");    //Generates a random word and splits it into an array.
+            currentWord = (words[randomWord]).split("");        //Generates a random word and splits it into an array.
             
-            chanceDeteriminative(currentWord, difficulty());                  //Determines the number of chances allowed based on currentWord length.
+            chanceDeteriminative(currentWord, difficulty());    //Decides how many guesses the user gets. see line 66 for more detail.
 
-            document.getElementById("guessesLeft").innerHTML = chancesLeft;
+            document.getElementById("guessesLeft").innerHTML = chancesLeft; //updates chances left in HTML.
 
             for (var i = 0; i < currentWord.length; i++) {      //Stores spaces that correspond to the hangman word in a variable called wordHolder.
                 wordHolder.push("_");
             };
-            currentWord.forEach(function(value,index){          //Replaces spaces between words with a space.
+            currentWord.forEach(function(value,index){          //Replaces underscores that represented spaces between words with a space.
                 if (value == " ") {
                     wordHolder[index] = " ";
                 }
             });                                                  
-            document.getElementById("word").innerHTML = makeString(wordHolder);
+            document.getElementById("word").innerHTML = makeString(wordHolder); //updates HTML with the correct amount of empty underscores and spaces.
 
         }; 
 
-        function difficulty(){
-            if (document.getElementById('easy').checked) {
-                return document.getElementById('easy').value;
-            } else if (document.getElementById('medium').checked) {
-                return document.getElementById('medium').value;
-            } else if (document.getElementById("insane").checked) {
-                return document.getElementById("insane").value;
-            }
-        }
-
     //Chance determinate function.
-        function chanceDeteriminative(word, level){                //Sets the number of chances based on length of hangman word.
+        function chanceDeteriminative(word, level){             //Determines the number of chances allowed based on currentWord length and chosen difficulty setting from difficulty function.
             var val = word.length;
             switch (true) {
                 case (val <= 4):
@@ -83,27 +57,40 @@ function makeString(arr) {                                      //Turns array in
             }
         };
 
+    //Difficulty function
+        function difficulty(){                                  //function checks which radio button is checked, then returns the value which is used as a multiplier in chanceDeterminative.
+            if (document.getElementById('easy').checked) {
+                return document.getElementById('easy').value;
+            } else if (document.getElementById('medium').checked) {
+                return document.getElementById('medium').value;
+            } else if (document.getElementById("insane").checked) {
+                return document.getElementById("insane").value;
+            }
+        }
+    //User input retriever function.
+        function newGuess() {                                           //Gets the user input from the form element and executes userGuess function.
+            x = document.getElementById("fname").value;
+            userGuess(x);
+
+        }
 
     //User input function.
         function userGuess(currentGuess){
-                                                                //Prompts the user to guess a letter.
             document.getElementById("messenger").innerHTML = "Scoreboard";
-            if (inArray(currentGuess,alphabet)) {               //Makes sure the input was a letter in the alphabet.
+
+            if (inArray(currentGuess,alphabet)) {               //Checks if users guess is in the current alphabet array.
                 
                 var index = alphabet.indexOf(currentGuess);     
-                alphabet.splice(index, 1);
+                alphabet.splice(index, 1);                      //Removes guessed letter from the alphabet array so that it can't be guessed wrong more than once.
                 pastGuesses.push(currentGuess);
-                document.getElementById("guessed").innerHTML = makeString(pastGuesses);
-                                      //Removes guessed letter from the alphabet array for comparative measures.
-
+                document.getElementById("guessed").innerHTML = makeString(pastGuesses); //Updates HTML with past guesses, see makeString function for more detail.
+                                      
                 checkWord(currentGuess);
-            } else {
-                ;   //do nothing if its not a letter of the alphabet.
-            }
+            }                                                   //do nothing if its not a letter of the alphabet.
         }; 
 
     //General function for array value checks.
-        function inArray(value,array) {                      //This function checks if a value is in an array, returns true or false
+        function inArray(value,array) {                         //This is a general function that checks if a value is in an array, returns true or false.
               for(var i=0;i<array.length;i++) {
                 if(array[i]===value){
                     return true;
@@ -112,41 +99,47 @@ function makeString(arr) {                                      //Turns array in
             return false;
         };
 
-    //Copmarative function, fate deciding function.
-        function checkWord(guess){                    //This function checks if the guessed letter is in the active hangman word.
+    //General array to string function.
+        function makeString(arr) {                                      //Turns an array into a string, then removes all the commas.
+            return (arr.toString()).replace(/,/g, "");
+                
+        }
+
+    //Comparative fate deciding function.
+        function checkWord(guess){                              //This function checks if the guessed letter is in the active hangman word.
             currentWord.forEach(function(value,index) {
                 if (value == guess) {
-                    wordHolder[index] = guess;             //This replaces the corresponding space in wordHolder with the correctly guessed letter.
+                    wordHolder[index] = guess;                  //This replaces the corresponding array index in wordHolder with the correctly guessed letter.
                 }
             })
 
-            if (currentWord.indexOf(guess) == -1) {                //This subtracts a chance if the letter is not in the active hangman word.
+            if (currentWord.indexOf(guess) == -1) {             //This subtracts a chance if the letter is not in the active hangman word and updates guesses left in HTML.
                 document.getElementById("guessesLeft").innerHTML = --chancesLeft;
-                gameOver();
-            }
-
-            document.getElementById("word").innerHTML = makeString(wordHolder);  
-            checkWin();
+                gameOver();                                     //Executes gameOver function if letter was not in the current hangman word.
+            } else {
+                checkWin();                                      //Otherwise we check if the user won.
+            }  
         };
 
     //Negative outcome function.
         function gameOver() {                               //Checks to see if the game is over, resets and updates global variables. Restarts game.
             if (chancesLeft <= 0) {
                 loses++;
-                document.getElementById("loses").innerHTML = loses;
+                document.getElementById("loses").innerHTML = loses; //Updates loses in HTML.
                 document.getElementById("messenger").innerHTML = "You Lose! The word was '" + makeString(currentWord) +"'. Guess a letter to start.";
-                newGame();
+                newGame();                                  //Start new game automatically.
             }
         };
 
     //Positive outcome function.
-        function checkWin(){                                //Checks to see if the user guessed all the correct letters, resets and updates global variables. Restarts game.
+        function checkWin(){                                //Checks to see if the user guessed all the correct letters.
+            document.getElementById("word").innerHTML = makeString(wordHolder); //Updates HTML with new progress since a letter was guessed correctly.
             if (wordHolder.indexOf("_") == -1) {
                 wins++;
-                document.getElementById("wins").innerHTML = wins;
+                document.getElementById("wins").innerHTML = wins; //Updates wins in HTML.
                 document.getElementById("messenger").innerHTML = "Good Job! You Win! Guess a letter to Start."
-                newGame();
-            }
+                newGame();                                  //Starts new game automatically.
+            }                       
         };
 
     //Start Game!
