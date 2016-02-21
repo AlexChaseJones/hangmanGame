@@ -9,19 +9,45 @@
 </head>
 <body>
 
-<div class="fluid-container">
-    <div id="header">
-        <div class="container">
-            <h1>Hangman!</h1>
+<div id="wrapper">
+    <div id="maincontent">
+        <div class="containercss">
+            <div id="header">
+                <h1>HANGMAN</h1>
+                <h3>Choose the next word's dificulty</h3>
+                <div id="difficulty">
+                    <form>
+                    <ul>
+                        <li>
+                            <label>
+                                <input type="radio" id="easy" name="level" value="5" checked="checked">
+                                <img class="easy" src="images/oneCircle.png">
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" id="medium" name="level" value="3">
+                                <img class="medium" src="images/twoCircle.png">
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" id="hard" name="level" value="1">
+                                <img class="hard" src="images/threeCircle.png">
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" id="impossible" name="level" value="0">
+                                <img class="impossible" src="images/fourCircle.png">
+                            </label>
+                        </li>
+                    </ul>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div id="difficulty">
-            <input type="radio" id="easy" name="level" value="3" checked="checked"> Easy 
-            <input type="radio" id="medium" name="level" value="2"> Medium
-            <input type="radio" id="insane" name="level" value=".9"> INSANEE
-        </div>
-    </div>
-    <div id="mainBody">
-        <div class="container">
+        <div class="containercss">
             <div id="scoreboard">
                 <h2 id="messenger">
                     Guess a letter to Start!
@@ -48,28 +74,26 @@
                 </div>
             </div>
             <div id="wordContainer">
-                <h3>Your Word:</h3>
-                <div id="word">
+                <h2 id="word">
                     
-                </div>
-            </div>
-
-            <div id="guessed">
-            </div>
-
-            <div id="guess">
-                <h2>
-                    Take A Guess! You have <span id="guessesLeft"></span> guesses left!
                 </h2>
-                <input type="text" id="fname" onkeydown="resetForm()" onkeyup="newGuess()">
+            </div>
+
+            <div id="previous">
+                <h2 id="guessed">
+
+                </h2>
             </div>
         </div>
     </div>
-    <div class="footer">
-        <div class="container">
-            
-        </div>
+    <div id="guess">
+        <h3>
+            Guess!
+        </h3>
+        <input type="text" placeholder="?" id="fname" onkeydown="resetForm()" onkeyup="newGuess()">
+        <h4>You have <span id="guessesLeft"></span> guesses left!</h4>
     </div>
+<div class="clearfix">
 </div>
 
 <script type="text/javascript" src="javascript/javascript.js"></script>

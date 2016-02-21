@@ -1,5 +1,5 @@
     //Global variables.
-        var words = ["toy story", "a bugs life", "monsters inc", "finding nemo", "the incredibles", "cars", "ratatouille", "walle", "up", "brave", "inside out", "pinocchio", "fantasia", "dumbo", "bambi", "cinderella", "alice in wonderland", "peter pan", "sleeping beauty", "robin hood", "the little mermaid", "alladin", "the lion king"];
+        var words = ["toy story", "the nightmare before christmas", "shrek", "mulan", "kung fu panda", "tarzan", "ice age", "happy feet", "the hunchback of notre dame", "despicable me", "pocahontas", "chicken little", "the jungle book", "madagascar", "shark tale", "the land before time", "lilo and stitch", "charlottes web", "a bugs life", "beauty and the beast", "monsters inc", "finding nemo", "the incredibles", "cars", "ratatouille", "walle", "up", "brave", "inside out", "pinocchio", "fantasia", "dumbo", "bambi", "cinderella", "alice in wonderland", "peter pan", "sleeping beauty", "robin hood", "the little mermaid", "alladin", "the lion king"];
         var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
         var pastGuesses = [];
         var wordHolder = [];
@@ -45,14 +45,17 @@ function resetForm() {                                          //Resets the inp
         function chanceDeteriminative(word, level){             //Determines the number of chances allowed based on currentWord length and chosen difficulty setting from difficulty function.
             var val = word.length;
             switch (true) {
+                case (level == 0):
+                    chancesLeft = 1;
+                    break;
                 case (val <= 4):
-                    chancesLeft = (Math.floor(3 * level)) + 1;
+                    chancesLeft = +level + 3;
                     break;
                 case (val <= 7):
-                    chancesLeft = (Math.floor(2.5 * level)) + 1;
+                    chancesLeft = +level + 2;
                     break;
                 case (val >= 7):
-                    chancesLeft = (Math.floor(2 * level)) + 1;
+                    chancesLeft = +level + 1;
                     break;        
             }
         };
@@ -63,13 +66,16 @@ function resetForm() {                                          //Resets the inp
                 return document.getElementById('easy').value;
             } else if (document.getElementById('medium').checked) {
                 return document.getElementById('medium').value;
-            } else if (document.getElementById("insane").checked) {
-                return document.getElementById("insane").value;
+            } else if (document.getElementById("hard").checked) {
+                return document.getElementById("hard").value;
+            } else if (document.getElementById("impossible").checked) {
+                return document.getElementById("impossible").value;
             }
         }
     //User input retriever function.
         function newGuess() {                                           //Gets the user input from the form element and executes userGuess function.
             x = document.getElementById("fname").value;
+            x = x.toLowerCase();
             userGuess(x);
 
         }
