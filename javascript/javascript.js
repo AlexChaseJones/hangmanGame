@@ -1,6 +1,7 @@
     //Global variables.
         var words = ["toy story", "a bugs life", "monsters inc", "finding nemo", "the incredibles", "cars", "ratatouille", "walle", "up", "brave", "inside out", "pinocchio", "fantasia", "dumbo", "bambi", "cinderella", "alice in wonderland", "peter pan", "sleeping beauty", "robin hood", "the little mermaid", "alladin", "the lion king"];
         var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+        var pastGuesses = [];
         var wordHolder = [];
         var currentWord = "";
         var chancesLeft = undefined;
@@ -13,23 +14,32 @@
 
 
 
-function newGuess() {
+function newGuess() {                                           //Gets the user input from the form element.
     x = document.getElementById("fname").value;
     userGuess(x);
 
 }
 
-function resetForm() {
+function resetForm() {                                          //Resets the form on keydown.
      document.getElementById("fname").value = "";
 }
 
+function makeString(arr) {                                      //Turns array into a string then removes all the commas.
+    return (arr.toString()).replace(/,/g, "");
+        
+}
 // document.getElementById("demo").innerHTML = x;
 
 
 
 //initializing function.
         function newGame(){
-            var newgame = confirm("ready to start a game?");        //Checks if the user is ready to start the game.
+            var newgame = confirm("ready to start a game?");        //Checks if the user is ready to start the game.   
+            
+            pastGuesses = [];                                       //This and the following 3 lines reset the game parameters.
+            document.getElementById("guessed").innerHTML = "";
+            alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+            wordHolder = [];
 
             if (newgame) {
                 var randomWord = Math.floor(Math.random() * words.length);               
@@ -45,8 +55,8 @@ function resetForm() {
                         wordHolder[index] = " ";
                     }
                 });                                                  
-                document.getElementById("word").innerHTML = wordHolder;
-                debugger;
+                document.getElementById("word").innerHTML = makeString(wordHolder);
+
             }  
         }; 
 
@@ -76,7 +86,10 @@ function resetForm() {
             if (inArray(currentGuess,alphabet)) {               //Makes sure the input was a letter in the alphabet.
                 
                 var index = alphabet.indexOf(currentGuess);     
-                alphabet.splice(index, 1);                      //Removes guessed letter from the alphabet array for comparative measures.
+                alphabet.splice(index, 1);
+                pastGuesses.push(currentGuess);
+                document.getElementById("guessed").innerHTML = makeString(pastGuesses);
+                                      //Removes guessed letter from the alphabet array for comparative measures.
 
                 checkWord(currentGuess);
             } else {
@@ -108,7 +121,7 @@ function resetForm() {
                 gameOver();
             }
 
-            document.getElementById("word").innerHTML = wordHolder;  
+            document.getElementById("word").innerHTML = makeString(wordHolder);  
             checkWin();
         };
 
@@ -117,8 +130,6 @@ function resetForm() {
             if (chancesLeft <= 0) {
                 alert("Game Over! You suck.")
                 loses++;
-                alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-                wordHolder = [];
                 console.log("wins: " + wins);
                 console.log("  loses: " + loses + "  ");
                 newGame();
@@ -130,8 +141,6 @@ function resetForm() {
             if (wordHolder.indexOf("_") == -1) {
                 alert("Good Job! You win!")
                 wins++;
-                alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-                wordHolder = [];
                 console.log("wins: " + wins);
                 console.log("  loses: " + loses + "  ");
                 newGame();
