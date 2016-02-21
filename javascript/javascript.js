@@ -19,8 +19,6 @@ function resetForm() {                                          //Resets the inp
             pastGuesses = [];                                   //This and the following 3 lines reset the game parameters so that a new game works correctly.
             alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
             wordHolder = [];
-            document.getElementById("guessed").innerHTML = " ";
-
 
             var randomWord = Math.floor(Math.random() * words.length);               
             currentWord = (words[randomWord]).split("");        //Generates a random word and splits it into an array.
@@ -77,6 +75,7 @@ function resetForm() {                                          //Resets the inp
             x = document.getElementById("fname").value;
             if (wordHolder.indexOf("_") == -1 || chancesLeft <= 0) {    //Starts the game if the game is over. Allows break point for user and for "press any key to start" capabiliity.
                 document.getElementById("messenger").innerHTML = "Scoreboard";
+                document.getElementById("guessed").innerHTML = "Animated Films";
                 newGame();
             }else {
             x = x.toLowerCase();
