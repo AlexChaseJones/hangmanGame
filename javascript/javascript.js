@@ -136,7 +136,7 @@ function resetForm() {                                          //Resets the inp
             if (chancesLeft <= 0) {
                 loses++;
                 document.getElementById("loses").innerHTML = loses; //Updates loses in HTML.
-                document.getElementById("messenger").innerHTML = "You Lose! The word was '" + makeString(currentWord) +"'. Guess a letter to start.";
+                document.getElementById("messenger").innerHTML = "You Lose! The word was '" + makeString(currentWord) + ".'";
             }
         };
 
@@ -146,6 +146,6 @@ function resetForm() {                                          //Resets the inp
             if (wordHolder.indexOf("_") == -1) {
                 wins++;
                 document.getElementById("wins").innerHTML = wins; //Updates wins in HTML.
-                document.getElementById("messenger").innerHTML = "Good Job! You Win! Guess a letter to Start."
+                document.getElementById("messenger").innerHTML = "You Win! Press a key to play again"
             }                       
         };
