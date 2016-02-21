@@ -75,9 +75,13 @@ function resetForm() {                                          //Resets the inp
     //User input retriever function.
         function newGuess() {                                           //Gets the user input from the form element and executes userGuess function.
             x = document.getElementById("fname").value;
+            if (wordHolder.indexOf("_") == -1 || chancesLeft <= 0) {    //Starts the game if the game is over. Allows break point for user and for "press any key to start" capabiliity.
+                document.getElementById("messenger").innerHTML = "Scoreboard";
+                newGame();
+            }else {
             x = x.toLowerCase();
             userGuess(x);
-
+            }
         }
 
     //User input function.
@@ -106,7 +110,7 @@ function resetForm() {                                          //Resets the inp
         };
 
     //General array to string function.
-        function makeString(arr) {                                      //Turns an array into a string, then removes all the commas.
+        function makeString(arr) {                              //Turns an array into a string, then removes all the commas.
             return (arr.toString()).replace(/,/g, "");
                 
         }
@@ -123,17 +127,16 @@ function resetForm() {                                          //Resets the inp
                 document.getElementById("guessesLeft").innerHTML = --chancesLeft;
                 gameOver();                                     //Executes gameOver function if letter was not in the current hangman word.
             } else {
-                checkWin();                                      //Otherwise we check if the user won.
+                checkWin();                                     //Otherwise we check if the user won.
             }  
         };
 
     //Negative outcome function.
-        function gameOver() {                               //Checks to see if the game is over, resets and updates global variables. Restarts game.
+        function gameOver() {                                   //Checks to see if the game is over, resets and updates global variables. Restarts game.
             if (chancesLeft <= 0) {
                 loses++;
                 document.getElementById("loses").innerHTML = loses; //Updates loses in HTML.
                 document.getElementById("messenger").innerHTML = "You Lose! The word was '" + makeString(currentWord) +"'. Guess a letter to start.";
-                newGame();                                  //Start new game automatically.
             }
         };
 
@@ -144,9 +147,5 @@ function resetForm() {                                          //Resets the inp
                 wins++;
                 document.getElementById("wins").innerHTML = wins; //Updates wins in HTML.
                 document.getElementById("messenger").innerHTML = "Good Job! You Win! Guess a letter to Start."
-                newGame();                                  //Starts new game automatically.
             }                       
         };
-
-    //Start Game!
-        newGame();

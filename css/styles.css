@@ -2,7 +2,9 @@ html, body {
 	font-style: monospace;
 	width: 100%;
 	height: 100%;
-	color: white;
+	color: black;
+	background-image: url("../images/ZenBG-1.png");
+	background-repeat: repeat-y, repeat;
 }
 
 h1, h2, h3, h4 {
@@ -30,6 +32,7 @@ h1, h2, h3, h4 {
 
 #header {
 	border-bottom: 5px solid black;
+	color: white;
 	background-color: #334D5C;
 }
 
@@ -55,7 +58,8 @@ h1, h2, h3, h4 {
 
 #difficulty ul li {
 	display: inline-block;
-	margin: 0 10px;
+	margin: 0 0px;
+	width: 70px;
 }
 
 label > input {
@@ -70,7 +74,11 @@ label > img {
 }
 
 input[type="radio"]:checked + img {
-	box-shadow: 0px 0px 20px 5px black;
+	border: 3px solid white;
+	width: 68px;
+	height: 68px;
+	border-radius: 34px;
+	box-shadow: 0px 0px 15px 2px black;
 }
 
 .easy {
@@ -118,17 +126,20 @@ input[type="radio"]:checked + img {
 	background-color: #EFC94C;
 	text-align:center;
 	height: 165px;
-	border-bottom: 5px solid black
+	border-bottom: 5px solid black;
 }
 
 #wordContainer h2 {
 	font-family: Courier;
+	background-color: #B89A3A;
+	min-height: 93px;
+	box-shadow: 0px 0px 15px 4px black inset;
 	width:400px;
 	letter-spacing: 5px;
 	padding: 15px 20px;
 	margin: 10px 0px;
 	border-radius: 20px;
-	border:5px solid white;
+	border:5px solid #FAE7A7;
 	display: inline-block;
 	text-align: center;
 }
@@ -141,8 +152,8 @@ input[type="radio"]:checked + img {
 	max-height: 120px;
 	min-height: 120px;
 	text-align: center;
-	letter-spacing: 20px;
-	padding: 20px;
+	letter-spacing: 10px;
+	padding-top: 30px;
 }
 
 #guess {
@@ -150,16 +161,25 @@ input[type="radio"]:checked + img {
 	text-align: center;
 	float: left;
 	display: inline-block;
-	width: 120px;
+	width: 130px;
 	height: 190px;
 	border:5px solid black;
 	border-left: none;
 	border-top-right-radius: 30px;
-	border-bottom-right-radius: 30px;
+	border-bottom-right-radius: 10px;
 	background-color: #DF5A49;
 	position: relative;
 	top:250px;
 
+}
+
+#guess img {
+	width: 26px;
+	height: 26px;
+	margin-top: -6px;
+}
+#guess h2 {
+	padding-top: 3px;
 }
 
 #guess h3 {
@@ -167,15 +187,20 @@ input[type="radio"]:checked + img {
 }
 
 #guess h4 {
-	padding: 10px 0px;
+	position:absolute;
+	bottom:10px;
+	left: 7px;
 }
 
 #fname {
 	width: 70px;
 	height: 70px;
 	border-radius: 35px;
-	border:3px solid black;
+	border:3px solid #F09D92;
 	font-size:2em;
 	text-align: center;
+	color: white;
 	outline: none;
+	box-shadow: 0px 0px 15px 4px black inset;
+	background-color: #8F3A2F;
 }
