@@ -41,7 +41,7 @@ function makeString(arr) {                                      //Turns array in
             var randomWord = Math.floor(Math.random() * words.length);               
             currentWord = (words[randomWord]).split("");    //Generates a random word and splits it into an array.
             
-            chanceDeteriminative(currentWord);                  //Determines the number of chances allowed based on currentWord length.
+            chanceDeteriminative(currentWord, difficulty());                  //Determines the number of chances allowed based on currentWord length.
 
             document.getElementById("guessesLeft").innerHTML = chancesLeft;
 
@@ -57,21 +57,32 @@ function makeString(arr) {                                      //Turns array in
 
         }; 
 
+        function difficulty(){
+            if (document.getElementById('easy').checked) {
+                return document.getElementById('easy').value;
+            } else if (document.getElementById('medium').checked) {
+                return document.getElementById('medium').value;
+            } else if (document.getElementById("insane").checked) {
+                return document.getElementById("insane").value;
+            }
+        }
+
     //Chance determinate function.
-        function chanceDeteriminative(word){                //Sets the number of chances based on length of hangman word.
+        function chanceDeteriminative(word, level){                //Sets the number of chances based on length of hangman word.
             var val = word.length;
             switch (true) {
                 case (val <= 4):
-                    chancesLeft = 8;
+                    chancesLeft = 3 * level;
                     break;
                 case (val <= 7):
-                    chancesLeft = 7;
+                    chancesLeft = 2 * level;
                     break;
                 case (val >= 7):
-                    chancesLeft = 5;
+                    chancesLeft = 2 * level;
                     break;        
             }
         };
+
 
     //User input function.
         function userGuess(currentGuess){
