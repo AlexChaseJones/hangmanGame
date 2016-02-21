@@ -1,0 +1,36 @@
+#header {
+	border:5px solid black;
+	text-align: center;
+
+}
+
+#mainBody {
+	border:5px solid black;
+}
+
+
+#scoreboard {
+	text-align: center;
+	border:5px solid yellow;
+}
+
+#winsContainer {
+	float: left;
+}
+
+#losesContainer {
+	float: right;
+}
+.clearfix {
+	clear:both;
+}
+
+#wordContainer {
+	border:5px solid blue;
+	text-align:center;
+}
+
+#guessed {
+	border:5px solid red;
+	height: 100px;
+}
