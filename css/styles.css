@@ -102,36 +102,68 @@ input[type="radio"]:checked + img {
 #scoreboard {
 	background-color: #45B29D;
 	color:black;
-	padding:10px;
+	padding-top:10px;
 	padding-top: 0px;
 	height: 165px;
 	border-bottom: 5px solid black;
 	position: relative;
 }
 
-#messenger {
-	background-color: #72CCBB;
-	border:5px solid black;
-	border-top: none;
-	display: inline-block;
-	padding: 5px 10px;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
-}
-#scoreContainer {
-	position: absolute;
-	top: 110px;
-	left: 30px;
-	width: 420px;
-}
-
-#winsContainer {
+#message {
 	float: left;
+	width: 250px;
+	border:5px solid #68CCB9;
+	background-color: #318C7B;
+	height: 130px;
+	line-height: 90px;
+	margin-top: 15px;
+	padding:10px;
+	box-shadow: 0px 0px 15px 4px black inset;
+	border-radius: 20px;
+
 }
 
-#losesContainer {
-	float: right;
+#messenger {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: normal;
+	font-weight: 200;
+	color: white;
 }
+
+.score {
+	width: 120px;
+	padding: 15px 0px;
+	height: 160px;
+	font-size: 2.3em;
+	font-weight: 200;
+	color: black;
+}
+
+.scoreContainer {
+	font-size: 1.5em;
+	font-weight: 100;
+	border:3px solid black;
+	display: inline-block;
+	box-shadow: 0px 0px 15px 3px black inset;
+	background-color: #428276;
+	height: 75px;
+	width: 75px;
+	color: white;
+	border-radius: 20px 20px 10px 10px;
+
+}
+
+#left {
+	float: left;
+
+}
+
+#right {
+	float: right;
+
+}
+
 
 
 
@@ -148,24 +180,30 @@ input[type="radio"]:checked + img {
 	border-bottom: 5px solid black;
 }
 
-#wordContainer h2 {
-	font-family: Courier;
+#wordBox {
 	background-color: #B89A3A;
-	min-height: 93px;
+	height: 140px;
 	box-shadow: 0px 0px 15px 4px black inset;
 	width:400px;
-	letter-spacing: 5px;
 	padding: 15px 20px;
+	line-height: 90px;
 	margin: 10px 0px;
 	border-radius: 20px;
 	border:5px solid #FAE7A7;
 	display: inline-block;
-	text-align: center;
 }
 
-#wordContainer h3 {
-	
+#word {
+	font-family: Courier;
+	text-align: center;
+	letter-spacing: 5px;
+	text-align: center;
+	font-size: 2.3em;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: normal;
 }
+
 #guessed {
 	font-family: Courier;
 	background-color: #E27A3F;
